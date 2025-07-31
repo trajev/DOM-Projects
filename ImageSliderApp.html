@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Slider App</title>
+  <style>
+    body{
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    main{
+      text-align: center;
+    }
+    main img{
+      width: 40vw;
+      border: 2px solid black;
+      border-radius: 20px;
+    }
+    button{
+      font-size: 20px;
+      padding: 12px 20px;
+      border: none;
+      background-color: black;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      margin-left: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <img  id="img" src="https://plus.unsplash.com/premium_photo-1664300362291-16264cacd847?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="elephant">
+    <h1 id="imgTitle">The Gaint Elephant</h1>
+  </main>
+
+  <div id="buttons">
+    <button id="prev">Previous Image</button>
+    <button id="next">Next Image</button>
+  </div>
+
+  <script>
+
+    let images = [
+      {
+        title: "The Great Elephant",
+        url: "https://plus.unsplash.com/premium_photo-1664300362291-16264cacd847?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      },
+      {
+        title: "The Great Leopard",
+        url: "https://plus.unsplash.com/premium_photo-1661932919649-5602f7ccf3c5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      },
+      {
+        title: "The Great Rhino",
+        url: "https://plus.unsplash.com/premium_photo-1661828159832-19d8340f8e09?q=80&w=1164&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      },
+      {
+        title: "The Great Hippo",
+        url: "https://images.unsplash.com/photo-1625265398537-abf52202a6fe?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      },
+
+    ]
+
+    let id = 0;
+
+    let imageElement = document.getElementById("img")
+    let imageTitle = document.getElementById("imgTitle")
+    let prevBtn = document.getElementById("prev")
+    let nextBtn = document.getElementById("next")
+
+    function displayImage( id ){
+      let image = images[id];
+      imageElement.src = image.url;
+      imageTitle.innerText = image.title;
+    }
+
+    displayImage(0)
+
+    nextBtn.addEventListener("click", ()=>{
+      id++;
+      if( id===images.length ){
+        id = 0;
+      }
+      displayImage(id);
+    })
+
+    prevBtn.addEventListener("click", ()=>{
+      id--;
+      if( id<0 ){
+        id = images.length-1;
+      }
+      displayImage(id);
+    })
+
+  </script>
+</body>
+</html>

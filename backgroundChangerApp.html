@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM</title>
+  <style>
+
+    body{
+      background-color: white;
+    }
+    button{
+      font-size: 36px;
+      padding: 10px 20px;
+      border: 3px solid black;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <button id="btn"> Change Background Color </button>
+
+  <script>
+    function getRandomColor(){
+      let codes = "abcdef0123456789"
+      let color = "#";
+
+      for(let i=0; i<6; i++){
+        color += codes[Math.floor(Math.random()*codes.length)];
+      }
+
+      return color;
+    }
+
+    let button = document.querySelector("#btn");
+    button.addEventListener( "click", ()=>{
+      document.body.style.backgroundColor = getRandomColor();
+    } )
+
+  </script>
+</body>
+
+</html>
