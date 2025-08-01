@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      overflow: hiddend;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    form {
+      border-radius: 10px;
+      width: 25vw;
+      background-color: paleturquoise;
+      padding: 10px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    form h1 {
+      font-size: 50px;
+    }
+
+    label {
+      font-size: 20px;
+      font-weight: bold;
+      width: 10vw;
+      margin: 0px 10px;
+    }
+
+    .field input {
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 3px;
+      border: 1px solid gray;
+    }
+
+    #submitBtn {
+      font-size: 20px;
+      background-color: darkgreen;
+      color: white;
+      padding: 10px 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      margin: 10px 0px;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <form id="registrationForm" autocomplete="off">
+    <h2>User Registration Form</h2>
+    <div class="field">
+      <label for="username">Username:</label>
+      <input id="username" type="text" name="username" placeholder="enter username">
+    </div>
+    <div class="field">
+      <label for="email">Email:</label>
+      <input id="emailId" type="text" name="email" placeholder="enter email id">
+    </div>
+    <div class="field">
+      <label for="password">Password:</label>
+      <input id="password" type="password" name="password" placeholder="enter password">
+    </div>
+    <input id="submitBtn" type="submit" value="Register User">
+  </form>
+
+
+
+  <script>
+
+    function validateForm(e) {
+
+      e.preventDefault();
+
+      let username = document.getElementById("username").value;
+      let email = document.getElementById("emailId").value;
+      let password = document.getElementById("password").value;
+
+      console.log( email, password, username)
+      if ( !email || !username || !password) {
+        alert("Please fill all the fields");
+      } else {
+
+
+        // check username
+        if (username.length < 6 || username.length > 10) {
+          alert("length of username should be min 6 and max 10")
+          return;
+        } else if (username.includes(" ")) {
+          alert("username shouldn't contain spaces")
+          return;
+        }
+
+        // check email
+        if( email.startsWith("@gmail.com") || !email.endsWith("@gmail.com") ){
+          alert("enter valid email")
+          return;
+        }
+
+        // check password
+        if (password.length < 6 || password.length > 10) {
+          alert("length of password should be min 6 and max 10")
+          return;
+        } else if (password.includes(" ")) {
+          alert("password shouldn't contain spaces")
+          return;
+        } else {
+
+          let capitalLetter = false;
+          let smallLetter = false;
+          let number = false;
+
+          for (let c of password) {
+            if( c>='A' && c<='Z' ){
+              capitalLetter=true;
+            } else if ( c>='a' && c<='z' ) {
+              smallLetter = true;
+            } else if ( c>=0 && c<=9 ){
+              number = true;
+            }
+          }
+
+          if( !capitalLetter ){
+            alert("password should contain atleast one capital letter")
+            return;
+          } else if ( !smallLetter ){
+            alert("password should contain atleast one small letter")
+            return;
+          } else if ( !number ) {
+            alert("password should contain atleast one number")
+            return;
+          }
+
+        }
+
+        alert("User Registered Successfully");
+
+      }
+
+    }
+
+    let form = document.getElementById("registrationForm");
+    form.addEventListener("submit", validateForm)
+
+
+  </script>
+
+</body>
+
+</html>
