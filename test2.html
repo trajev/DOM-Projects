@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      background-color: black;
+      overflow: hidden;
+    }
+
+    #circle {
+      position: absolute;
+      z-index: 10;
+      width: 50px;
+      height: 50px;
+      background-color: aliceblue;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="circle"></div>
+
+  <script>
+
+    document.body.addEventListener( "mousemove",
+      (event) =>{
+        let circle = document.getElementById("circle")
+        circle.style.top = event.clientY + "px";
+        circle.style.left = event.clientX + "px";
+      }
+    )
+
+  </script>
+</body>
+
+</html>
